@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "my.telegrambot.webHookPath",
+      "type": "java.lang.String",
+      "description": "Description for my.telegrambot.webHookPath."
+  }
+] }
