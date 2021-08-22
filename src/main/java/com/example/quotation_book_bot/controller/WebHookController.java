@@ -1,6 +1,7 @@
 package com.example.quotation_book_bot.controller;
 
-import com.example.quotation_book_bot.QuotationBookBot;
+import com.example.quotation_book_bot.botUtils.BotFacade;
+import com.example.quotation_book_bot.service.QuotationBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,16 +11,12 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 @RestController
 public class WebHookController {
-  @Autowired
-  private final QuotationBookBot quotationBookBot;
 
-  public WebHookController(QuotationBookBot quotationBookBot) {
-    this.quotationBookBot = quotationBookBot;
-  }
+  @Autowired
+  private BotFacade botFacade;
 
   @PostMapping
-  public BotApiMethod<?> onUpdateReceived(@RequestBody Update update){
-    System.out.println(update.getMessage().getText());
-    return quotationBookBot.onWebhookUpdateReceived(update);
+  public BotApiMethod<?> onUpdateReceived(@RequestBody Update update) {
+    return botFacade.handleUpdate(update);
   }
 }

@@ -1,10 +1,12 @@
 package com.example.quotation_book_bot;
 
 import lombok.Setter;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramWebhookBot;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 
@@ -31,12 +33,15 @@ public class QuotationBookBot extends TelegramWebhookBot {
   }
 
   @Override
+  @SneakyThrows
   public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
-    return null;
+   return null;
   }
 
   @Override
   public String getBotPath() {
     return webHookPath;
   }
+
+
 }
