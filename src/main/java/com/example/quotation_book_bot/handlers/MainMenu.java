@@ -2,30 +2,28 @@ package com.example.quotation_book_bot.handlers;
 
 import com.example.quotation_book_bot.botUtils.BotState;
 import com.example.quotation_book_bot.entity.BotUser;
-import com.example.quotation_book_bot.entity.Quote;
 import com.example.quotation_book_bot.service.QuotationBookService;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.telegram.telegrambots.meta.api.methods.AnswerCallbackQuery;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
 /**
- * Основное меню бота, если бот находится в состоянии MainMenu, бот будет отдавать
- * это меню на любое сообщение.
+ * Основное меню бота, если бот находится в состоянии MainMenu, бот будет отдавать это меню на любое
+ * сообщение.
  */
 @Component
 @Slf4j
-public class MainMenu implements MessageHandler{
-  private BotState name = BotState.MAIN_MENU;
+public class MainMenu implements MessageHandler {
+
+  private final BotState name = BotState.MAIN_MENU;
 
   @Autowired
   private QuotationBookService quotationBookService;
@@ -35,6 +33,12 @@ public class MainMenu implements MessageHandler{
     return name;
   }
 
+  /**
+   * Получает информацию из Update, находит нужного юзера, берет его имя
+   * и выодит нужное сообщение с меню для пользователя.
+   * @param update
+   * @return BotApiMethod
+   */
   @Override
   public BotApiMethod<?> handle(Update update) {
 
@@ -49,9 +53,6 @@ public class MainMenu implements MessageHandler{
 
     return sendMessage;
   }
-
-
-
 
 
   private InlineKeyboardMarkup getInlineButtons() {

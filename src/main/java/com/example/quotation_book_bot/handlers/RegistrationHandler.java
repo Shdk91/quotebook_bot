@@ -26,6 +26,11 @@ public class RegistrationHandler implements MessageHandler {
 
   private final BotState name = BotState.REGISTERING;
 
+  /**
+   * Получает информацию из Update, получает имя из сообщение и сохраняет пользователя в бд
+   * @param update
+   * @return BotApiMethod
+   */
   @Override
   public BotApiMethod<?> handle(Update update) {
     Message message = update.getMessage();

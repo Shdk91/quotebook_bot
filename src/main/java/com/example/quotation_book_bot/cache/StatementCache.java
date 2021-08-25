@@ -6,8 +6,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.springframework.stereotype.Component;
 
 @Component
-public class StatementCache implements BotCache{
-  private Map<Long, BotState> stateCache = new ConcurrentHashMap<>();
+public class StatementCache implements BotCache {
+
+  private final Map<Long, BotState> stateCache = new ConcurrentHashMap<>();
 
   @Override
   public BotState getState(Long chatId) {

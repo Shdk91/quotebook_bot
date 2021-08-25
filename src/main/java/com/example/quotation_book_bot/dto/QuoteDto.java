@@ -9,6 +9,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class QuoteDto {
+
   String message;
   PaginationDto pagination;
   Long totalQuotes;

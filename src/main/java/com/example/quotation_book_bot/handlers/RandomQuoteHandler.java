@@ -2,7 +2,6 @@ package com.example.quotation_book_bot.handlers;
 
 import com.example.quotation_book_bot.botUtils.BotState;
 import com.example.quotation_book_bot.cache.QuoteCache;
-import com.example.quotation_book_bot.entity.BotUser;
 import com.example.quotation_book_bot.entity.Quote;
 import com.example.quotation_book_bot.service.QuotationBookService;
 import java.util.ArrayList;
@@ -12,14 +11,13 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.CallbackQuery;
-import org.telegram.telegrambots.meta.api.objects.Message;
-import org.telegram.telegrambots.meta.api.objects.MessageEntity;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
 @Component
-public class RandomQuoteHandler implements MessageHandler{
+public class RandomQuoteHandler implements MessageHandler {
+
   private final BotState name = BotState.RANDOM_QUOTE;
 
   @Autowired
@@ -28,10 +26,16 @@ public class RandomQuoteHandler implements MessageHandler{
   private QuoteCache quoteCache;
 
   @Override
+  /**
+   * Получает информацию из Update, заправшивает случайную цитату из внешнего сервиса,сохраняет цитату в кэш
+   * и отдает цитату пользователю.
+   * @param update
+   * @return BotApiMethod
+   */
   public BotApiMethod<?> handle(Update update) {
     CallbackQuery callbackQuery = update.getCallbackQuery();
     Long chatId = callbackQuery.getMessage().getChatId();
-    Long userId = callbackQuery.getFrom().getId();
+
     Quote quote = quotationBookService.getRandomQuote();
     String text = quote.getQuoteText() + "\n\n" + quote.getQuoteAuthor();
 

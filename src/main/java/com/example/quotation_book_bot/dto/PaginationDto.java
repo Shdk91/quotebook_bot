@@ -7,6 +7,7 @@ import lombok.experimental.FieldDefaults;
 @Data
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class PaginationDto {
+
   Long currentPage;
   Long nextPage;
   Long totalPages;

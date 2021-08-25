@@ -1,7 +1,6 @@
 package com.example.quotation_book_bot.controller;
 
 import com.example.quotation_book_bot.botUtils.BotFacade;
-import com.example.quotation_book_bot.service.QuotationBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
